@@ -13,7 +13,6 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="<?=base_url('assets/AdminLTE/')?>plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -47,9 +46,14 @@
 
 <script src="<?=base_url('assets/AdminLTE/')?>dist/js/manual.js"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
 <script type="text/javascript">
-	$('#loading').hide();
-$('#table-modal-barang').DataTable();
+	$(document).ready(function(){
+			$('#loading').hide();
+			$('#table-modal-barang').DataTable();
+			$('#master_barang').DataTable({'scrollX':true});
+			$('#table-po').DataTable();
+	})
 </script>
 </body>
 </html>

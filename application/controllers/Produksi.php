@@ -71,8 +71,24 @@ class Produksi extends CI_Controller {
 
 
 		$res = $this->produksi_model->insert_daily($data);
+		// update blnc prod proccess
 
-		print_r($this->db->last_query());
+		//get
+		$no_po = $data['no_po'];
+		$part_no = $data['part_no'];
+		$res = $this->produksi_model->get_production($no_po, $part_no)->result()[0];
+		
+		$wip_bln_lalu   = $this->produksi_model->get_wip_lalu(    $res->no_po,  $res->part_no);
+		$wip_bln_ini    = $this->produksi_model->get_wip_bln_ini( $res->no_po,  $res->part_no);
+	    $fg_bln_lalu    = $this->produksi_model->get_fg_lalu(     $res->no_po,  $res->part_no);
+	    $fg_bln_ini     = $this->produksi_model->get_fg_bln_ini(  $res->no_po,  $res->part_no);
+
+		$total_wip  = $wip_bln_ini + $wip_bln_lalu;
+        $total_fg 	= $fg_bln_ini + $fg_bln_lalu;
+		$blnc_prod 	= $res->qty - $total_fg - $total_wip;
+		//update
+		$this->produksi_model->update_blnc($no_po, $part_no, $blnc_prod);
+
 	}
 
 	public function change_status($status, $id_production)

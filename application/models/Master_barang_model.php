@@ -10,9 +10,13 @@ class Master_barang_model extends CI_Model {
 		return $res;
 	}
 
-	public function get_all()
+	public function get_all($no_limit=False, $sort='ASC')
 	{
-		$this->db->limit(50,0);
+		if ($no_limit == False) {
+			$this->db->limit(50,0);
+		}
+
+		$this->db->order_by('id',$sort);
 		$res = $this->db->get('master_barang');
 		return $res;
 	}
@@ -63,6 +67,21 @@ class Master_barang_model extends CI_Model {
 		$this->db->like($data);
 		$res = $this->db->get('master_barang');
 		return $res;
+	}
+
+	public function search_by_kd_cust($keyword)
+	{
+		$this->db->where('kode_customer',$keyword);
+		$this->db->select_max('kode_barang','last_value');
+		$res = $this->db->get('master_barang');
+
+		$last_value = $res->result()[0]->last_value;
+		$sql = "SELECT * FROM master_barang where kode_barang='$last_value'";
+		$jumlah = $this->db->query($sql)->num_rows();
+		return [
+			'last_data'=>$last_value,
+			'num_rows'=>$jumlah+1
+				];
 	}
 
 }

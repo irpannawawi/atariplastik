@@ -59,15 +59,15 @@ class Print_page extends CI_Controller {
 		
 		//thead
 		$pdf->Cell(21.48571429,8,"Part No",1,0,'C');
-		$pdf->Cell(35.97142857+8,8,"Part Name",1,0,'C');
-		$pdf->Cell(16,8,"Po Qty",1,0,'C');
+		$pdf->Cell(61.97142857,8,"Part Name",1,0,'C');
+		$pdf->Cell(14,8,"Po Qty",1,0,'C');
 		$pdf->Cell(23.48571429,8,"Part Color",1,0,'C');
 		$pdf->Cell(22.48571429,8,"Material",1,0,'C');
-		$pdf->Cell(34,8,"Master Batch",1,0,'C');
-		$pdf->Cell(15,8,"CT",1,0,'C');
-		$pdf->Cell(15,8,"CAV",1,0,'C');
-		$pdf->Cell(15,8,"Brutto",1,0,'C');
-		$pdf->Cell(15,8,"Netto",1,0,'C');
+		$pdf->Cell(30,8,"Master Batch",1,0,'C');
+		$pdf->Cell(10,8,"CT",1,0,'C');
+		$pdf->Cell(10,8,"CAV",1,0,'C');
+		$pdf->Cell(14,8,"Brutto",1,0,'C');
+		$pdf->Cell(14,8,"Netto",1,0,'C');
 		$pdf->Cell(21.14285714,8,"Material 1",1,0,'C');
 		$pdf->Cell(21.14285714,8,"Material 2",1,0,'C');
 		$pdf->Cell(25.14285714,8,"Total Material",1,0,'C');
@@ -75,23 +75,38 @@ class Print_page extends CI_Controller {
 		$pdf->Ln();
 		//data list from db
 		$pdf->SetFont('Times','',9);
+		$grand_total_material1 = $grand_total_material2 = $grand_total_material = $grand_total_MB = 0;
 	foreach ($list_po as $key) {
 		$pdf->Cell(21.48571429,5,$key->part_no,1,0,'C');
-		$pdf->Cell(35.97142857+8,5,$key->nama_barang,1,0,'C');
-		$pdf->Cell(16,5,$key->qty,1,0,'C');
+		$pdf->Cell(61.97142857,5,$key->nama_barang,1,0,'L');
+		$pdf->Cell(14,5,$key->qty,1,0,'C');
 		$pdf->Cell(23.48571429,5,$key->warna,1,0,'C');
 		$pdf->Cell(22.48571429,5,$key->bahan,1,0,'C');
-		$pdf->Cell(34,5,$key->total_mb_name,1,0,'C');
-		$pdf->Cell(15,5,$key->ct,1,0,'C');
-		$pdf->Cell(15,5,$key->cav,1,0,'C');
-		$pdf->Cell(15,5,$key->bruto,1,0,'C');
-		$pdf->Cell(15,5,$key->netto,1,0,'C');
-		$pdf->Cell(21.14285714,5,$key->keb_m1,1,0,'C');
-		$pdf->Cell(21.14285714,5,$key->keb_m2,1,0,'C');
-		$pdf->Cell(25.14285714,5,$key->keb_total_m,1,0,'C');
-		$pdf->Cell(21.14285714,5,$key->keb_mb,1,0,'C');
+		$pdf->Cell(30,5,$key->total_mb_name,1,0,'C');
+		$pdf->Cell(10,5,$key->ct,1,0,'C');
+		$pdf->Cell(10,5,$key->cav,1,0,'C');
+		$pdf->Cell(14,5,$key->bruto,1,0,'C');
+		$pdf->Cell(14,5,$key->netto,1,0,'C');
+		$pdf->Cell(21.14285714,5,$key->keb_m1.' Kg',1,0,'C');
+		$pdf->Cell(21.14285714,5,$key->keb_m2.' Kg',1,0,'C');
+		$pdf->Cell(25.14285714,5,$key->keb_total_m.' Kg',1,0,'C');
+		$pdf->Cell(21.14285714,5,$key->keb_mb.' Gram',1,0,'C');
 		$pdf->Ln();
+
+		//grand total count
+		$grand_total_material1 	+= $key->keb_m1;
+		$grand_total_material2 	+=  $key->keb_m2;
+		$grand_total_material 	+= $key->keb_total_m;
+		$grand_total_MB 		+= $key->keb_mb;
 	}
+
+
+		$pdf->Cell(221.4286,5,'Grand Total',1,0,'C');
+		$pdf->Cell(21.14285714,5,$grand_total_material1.' Kg',1,0,'C');
+		$pdf->Cell(21.14285714,5,$grand_total_material2.' Kg',1,0,'C');
+		$pdf->Cell(25.14285714,5,$grand_total_material.' Kg',1,0,'C');
+		$pdf->Cell(21.14285714,5,$grand_total_MB.' Gram',1,0,'C');
+		$pdf->Ln();
 
 		$pdf->Cell(310,20,'');
 		$pdf->Ln();

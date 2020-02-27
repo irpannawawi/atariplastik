@@ -63,7 +63,7 @@
 	    	<div class="row">
 	    		<div class="col-12">
 	    			<button id="print" class="btn btn-primary">print</button>
-	    			<table class="table table-bordered">
+	    			<table class="table table-bordered table-responsive">
 	    				<tr>
 	    					<td colspan="3"></td>
 	    					<td colspan="7">Product Information</td>
@@ -71,20 +71,20 @@
 	    				</tr>
 	    				<!--						CT	Cav	Brutto	Netto	Material 1	Material 2	Total Material	Total MB.-->
 	    				<tr>
-	    					<td>Part no</td>
-	    					<td>Part Name</td>
-	    					<td>PO. Qty</td>
-	    					<td>Part Color</td>
+	    					<td nowrap>Part no</td>
+	    					<td nowrap>Part Name</td>
+	    					<td nowrap>PO. Qty</td>
+	    					<td nowrap>Part Color</td>
 	    					<td>Material</td>
-	    					<td>Master Batch No.</td>
+	    					<td nowrap>Master Batch No.</td>
 	    					<td>CT</td>
 	    					<td>CAV</td>
 	    					<td>Brutto</td>
 	    					<td>Netto</td>
-	    					<td>Material 1</td>
-	    					<td>Material 2</td>
-	    					<td>Total Material</td>
-	    					<td>Total MB</td>
+	    					<td nowrap>Material 1</td>
+	    					<td nowrap>Material 2</td>
+	    					<td nowrap>Total Material</td>
+	    					<td nowrap>Total MB</td>
 	    				</tr>
 	    				<tbody class="body-po-table">
 	    					

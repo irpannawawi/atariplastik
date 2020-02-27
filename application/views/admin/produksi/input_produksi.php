@@ -110,8 +110,7 @@
 
                   $total_wip    = $wip_bln_ini  + $wip_bln_lalu;
                   $total_fg     = $fg_bln_ini   + $fg_bln_lalu;
-                  $blnc_prod    = $key->qty     - $total_fg - $total_wip;
-                  $lama_prod    = round($blnc_prod/$target_jam);
+                  $lama_prod    = round($key->blnc_prod/$target_jam);
                   
                  ?>
                 <tr>
@@ -140,7 +139,7 @@
                     <?=$key->qty?>
                   </td>
                   <td>
-                    <?=$blnc_prod?>
+                    <?=$key->blnc_prod?>
                   </td>
                   <td>
                     <?=$key->warna?>
@@ -428,6 +427,7 @@
 }
 console.log(insertData);
     $.post(url,insertData,function(data){
+      Swal.fire('Success','Data Berhasil Dimasukan','success');
       location.reload(true);
     });
   });

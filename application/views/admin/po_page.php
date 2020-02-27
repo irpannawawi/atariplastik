@@ -98,6 +98,7 @@
 							<th nowrap>Keb. M1 </th>
 							<th nowrap>Keb. M2 </th>
 							<th nowrap>Keb. MB </th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -114,14 +115,14 @@
 								<td><?=$key->nama_customer?></td>
 								<td><?=$key->no_po_customer?></td>
 								<td><?=$key->part_no?></td>
-								<td><?=$key->nama_barang?></td>
+								<td nowrap><?=$key->nama_barang?></td>
 								<td><?=$key->qty?></td>
 								<td><?=$key->warna?></td>
 								<td><?=$key->bahan?></td>
 								<td><?=$key->komposisi_1?></td>
 								<td><?=$key->komposisi_2?></td>
 								<td><?=$key->total_mb_name?></td>
-								<td><?=$key->total_mb_val?></td>
+								<td><?=$key->total_mb_val*100?>%</td>
 								<td><?=$key->ct?></td>
 								<td><?=$key->cav?></td>
 								<td><?=$key->bruto?></td>
@@ -129,7 +130,13 @@
 								<td><?=$key->keb_total_m?></td>
 								<td><?=$key->keb_m1?></td>
 								<td><?=$key->keb_m2?></td>
-								<td><?=($key->total_mb_val/100)*$key->keb_total_m*1000?></td>
+								<td><?=$key->keb_mb?></td>
+								<td>
+									<div class="btn-group">
+										<a href="<?=site_url('admin/delete_po/'.$key->id)?>" class="btn btn-danger">Delete</a>
+										<a href="<?=site_url('admin/delete_po/'.$key->id)?>" class="btn btn-warning">Edit</a>
+									</div>
+								</td>
 							</tr>
 						<?php } ?>
 					</tbody>
@@ -152,28 +159,5 @@
 
 
 
-<!--
-
-	Month
-	Date
-	PO#	
-	Customer
-	PO# Customer 
-	Part No. (master / po)
-	Part Name (master)
-	PO. Qty (po)
-	Part Color (master)
-	Material (master)
-	Mtr 1 (material 1)
-	Mtr 2 (material 2)
-	Master Batch No. (total_mb_name)
-	Proportion (total_mb_value)
-	CT (master)
-	Cav (Master)
-	Brutto(master)
-	Netto (master)
-	Kebutuhan Total (po)
-	Keb. M1 (po)
-	Keb. M2 (po)
-	Keb. MB (po)
--->
+<script type="text/javascript">
+</script>

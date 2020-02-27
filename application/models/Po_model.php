@@ -71,6 +71,7 @@ class Po_model extends CI_Model {
 			$data['keb_total_m'] 	= $barang->bruto * $data['qty'] / $barang->cav / 1000;
 			$data['keb_m1'] 		= $data['keb_total_m'] * $barang->komposisi_1;
 			$data['keb_m2'] 		= $data['keb_total_m'] * $barang->komposisi_2;
+			$data['keb_mb']			= $data['keb_total_m'] * $barang->total_mb_val * 1000;
 		}else{
 			$data['keb_total_m'] 	= 0;
 			$data['keb_m1'] 		= 0;
