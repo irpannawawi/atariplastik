@@ -77,10 +77,23 @@ class Welcome extends CI_Controller {
 
 	public function test()
 	{
-		$wip_bln_lalu 		= $this->produksi_model->get_wip_lalu('PO/AT/20/01/114', 'SB-160-2');
-		print_r($wip_bln_lalu);
-		echo "<hr>";
-		print_r($this->db->last_query());
+		//get
+		$no_po = "PO/AT/20/01/002";
+		$part_no = "ZP-183-2";
+		$res = $this->produksi_model->get_production($no_po, $part_no)->result()[0];
+		
+		
+		$wip_bln_lalu   = $this->produksi_model->get_wip_lalu(    $res->no_po,  $res->part_no);
+		$wip_bln_ini    = $this->produksi_model->get_wip_bln_ini( $res->no_po,  $res->part_no);
+	    $fg_bln_lalu    = $this->produksi_model->get_fg_lalu(     $res->no_po,  $res->part_no);
+	    $fg_bln_ini     = $this->produksi_model->get_fg_bln_ini(  $res->no_po,  $res->part_no);
+
+		$total_wip  = $wip_bln_ini + $wip_bln_lalu;
+        $total_fg 	= $fg_bln_ini + $fg_bln_lalu;
+		echo $blnc_prod 	= $res->qty - $total_fg - $total_wip;
+		/*
+		*/
+
 	}
 
 	public function bench()

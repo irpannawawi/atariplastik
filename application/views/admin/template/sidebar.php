@@ -88,13 +88,18 @@
               <li class="nav-item">
                 <a href="<?=site_url('produksi/input')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Daily Input</p>
+                  <p>Input Harian</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=site_url('produksi/runing')?>" class="nav-link">
+                <a href="<?=site_url('rencana_harian')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Runing</p>
+                  <p>Rencana Harian</p>
+                </a>
+              </li><li class="nav-item">
+                <a href="<?=site_url('outstanding')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Outstanding</p>
                 </a>
               </li>
             </ul>

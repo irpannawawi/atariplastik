@@ -73,7 +73,7 @@
         </div>
     		<div class="card-body">
           <div class="table-responsive-xl">
-    			<table class="table table-bordered table-striped table-hover table-responsive ">
+    			<table class="table table-bordered table-striped table-hover table-responsive table-produksi">
             <thead class="thead-dark">
     				<tr>
     					<th>No</th>
@@ -479,7 +479,7 @@ console.log(insertData);
     console.log(nama);
     $('#operator').val(id);
     $('#nama_operator').val(nama);
-    $('#modal_operator').modal().hide();
+    $('#modal_operator').hide();
     $('.modal-backdrop').last().hide();
 
   }

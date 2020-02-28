@@ -70,8 +70,7 @@ class Admin extends CI_Controller {
 		$data['part_no'] 			= $this->input->post('part_no');
 		$data['tanggal_po'] 	= $this->input->post('tanggal_po');
 		$data['nama_customer'] 	= $this->input->post('customer');	
-		$data['qty'] 			= $this->input->post('qty');
-
+		$data['qty'] = $data['blnc_prod'] = $this->input->post('qty');
 		//insert PO
 		$po = $this->po_model->insert($data);
 
