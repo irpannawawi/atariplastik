@@ -91,12 +91,13 @@ class Produksi extends CI_Controller {
 
 	}
 
-	public function change_status($status, $id_production)
+	public function change_status($status)
 	{
+		$id_production = $this->input->post('id');
 		$res = $this->produksi_model->set_status($status, $id_production);
 
 		if ($res) {
-			redirect('produksi/input');
+			echo "OK";
 		}else{
 			print_r($this->db->error());
 		}

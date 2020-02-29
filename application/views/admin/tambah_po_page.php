@@ -158,7 +158,7 @@
             <select id="nama_cust" class="form-control">
                 <option value="" id="defaultCustomerValue">Nama Customer</option>
               <?php foreach ($list_nama_customer as $key) { ?>
-                <option value="<?=$key->nama_customer?>"><?=$key->nama_customer?></option>
+                <option value="<?=$key->nama_customer_m?>"><?=$key->nama_customer_m?></option>
               <?php } ?>
             </select>
           </td>
@@ -239,7 +239,7 @@
         <tr>
           <td><?=$item->part_no?></td>
           <td><?=$item->nama_barang?></td>
-          <td><?=$item->nama_customer?></td>
+          <td><?=$item->nama_customer_m?></td>
           <td><?=$item->ct?></td>
           <td><?=$item->cav?></td>
           <td><?=$item->bruto?></td>
@@ -295,7 +295,7 @@
             <select id="nama_cust2" class="form-control">
                 <option value="" id="defaultCustomerValue">Nama Customer</option>
               <?php foreach ($list_nama_customer as $key) { ?>
-                <option value="<?=$key->nama_customer?>"><?=$key->nama_customer?></option>
+                <option value="<?=$key->nama_customer_m?>"><?=$key->nama_customer_m?></option>
               <?php } ?>
             </select>
           </td>
@@ -355,7 +355,7 @@
             <td><?=$data->tanggal_po?></td>
             <td><?=$data->no_po?></td>
             <td><?=$data->no_po_customer?></td>
-            <td><?=$data->nama_customer?></td>
+            <td><?=$data->nama_customer_m?></td>
             <td><?=$data->nama_barang?></td>
             <td><?=$data->bahan?></td>
             <td><?=$data->warna?></td>

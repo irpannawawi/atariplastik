@@ -167,7 +167,7 @@
      						<tr>
      							<td><?=$n?></td>
      							<!-- Customer -->
-			 					<td align="center" nowrap><?=$barang->nama_customer?></td>
+			 					<td align="center" nowrap><?=$barang->nama_customer_m?></td>
 			 					<td align="center" nowrap><?=$barang->kode_customer?></td>
 			 					<td align="center" nowrap><?=$barang->kode_barang?></td>
 			 					<td align="center" nowrap><?=$barang->no_urut?></td>

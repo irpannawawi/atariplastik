@@ -52,15 +52,6 @@
     </div>
     <!-- /.content-header -->
     <section class="content">
-      <div class="alert alert-success alert-dismissible" role="alert">
-        <div class="alert-header">
-          ALert
-          <button class="close" data-dismiss="alert">&times;</button>
-        </div>
-        <div class="alert-body result">
-          Messages here
-        </div>
-      </div>
     	<div class="card">
         <div class="card-header">
           <h3 style="float: left;">Dalam Produksi</h3>
@@ -121,7 +112,7 @@
                     <?=$key->nama_customer?>
                   </td>
                   <td>
-                    <?=$target_jam?>
+                    <?=$key->tanggal_po?>
                   </td>
                   <td>
                     <?=$key->no_po?>
@@ -157,14 +148,24 @@
                         <br>
                         <span class="badge badge-secondary"><?=$key->nama_mesin?></span>
                   </td>
-                  <td>
-                    <?php if(!empty($key->no_mesin) AND $key->status == "RUNNING"){?>
-                      <!--Value if true-->
-                      <a href="<?=site_url('produksi/change_status/stop/'.$key->id_production)?>" class="btn btn-success">Runing</a>
-                    <?php }else{ ?>
-                      <!--value if fale-->
-                      <a href="<?=site_url('produksi/change_status/running/'.$key->id_production)?>" class="btn btn-danger">Stoped</a>
-                    <?php } ?>
+                 <td class="btn-status-<?=$key->id_production?>">
+                    <!-- RUNNING -->
+                     <?php if(!empty($key->no_mesin) AND $key->status == "RUNNING"){?>
+                              <!--Value if true-->
+                              <button 
+                              onClick="change_to_stop('<?=$key->id_production?>','<?=site_url('produksi/change_status/stop/')?>')"
+                              class="btn btn-success">
+                                Running
+                              </button>
+                            <?php }else{ ?>
+                              <!--value if fale-->
+                              <button 
+                              onClick="change_to_run('<?=$key->id_production?>','<?=site_url('produksi/change_status/running/')?>')"
+                              class="btn btn-danger">
+                                Stoped
+                              </button>
+                            <?php } ?>
+
                   </td>
                   <td>
                     <button 

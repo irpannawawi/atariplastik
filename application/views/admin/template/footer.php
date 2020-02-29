@@ -19,5 +19,7 @@
 			$('.table-produksi').DataTable();
 	})
 </script>
+
+<script type="text/javascript" src="<?=base_url('assets/js/manual.js')?>"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ class Master_barang_model extends CI_Model {
 
 	public function get_list_cust()
 	{
-		$sql = "SELECT DISTINCT nama_customer FROM master_barang ORDER BY nama_customer ASC";
+		$sql = "SELECT DISTINCT nama_customer_m FROM master_barang ORDER BY nama_customer_m ASC";
 		$res = $this->db->query($sql);
 		return $res;
 	}

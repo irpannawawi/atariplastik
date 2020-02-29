@@ -74,6 +74,29 @@ class Produksi_model extends CI_Model {
 		return $res;
 	}
 
+	public function get_oustanding_production()
+	{
+		$this->db->select('*');
+		$this->db->from('production');
+		$this->db->join('po_table','production.no_po=po_table.no_po AND production.part_no=po_table.part_no','inner');
+		$this->db->join('master_barang','production.part_no=master_barang.part_no','left');
+		$this->db->join('base_mesin','production.no_mesin=base_mesin.no_mesin','left');
+		// $this->db->where('po_table.blnc_prod < po_table.qty');
+		$this->db->where('po_table.blnc_prod>','0');
+		$this->db->where('production.no_mesin!=','');
+		$this->db->order_by('po_table.id','ASC');
+		/*$sql = "SELECT * FROM `production` 
+							INNER JOIN po_table on 
+							production.no_po=po_table.no_po AND production.part_no=po_table.part_no 
+							LEFT JOIN master_barang on 
+							production.part_no=master_barang.part_no 
+							LEFT JOIN base_mesin ON 
+							production.no_mesin=base_mesin.no_mesin ORDER BY production.id_production ASC";*/
+		$res = $this->db->get();
+		$this->db->reset_query();
+		return $res;
+	}
+
 	public function get_production($no_po, $part_no)
 	{
 

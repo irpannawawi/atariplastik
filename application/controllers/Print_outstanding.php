@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Print_rencana_harian extends CI_Controller {
+class Print_outstanding extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
@@ -16,7 +16,7 @@ class Print_rencana_harian extends CI_Controller {
 		$list_production =$list_production->result();
 
 		$pdf = new FPDF();
-		$pdf->AddPage('L','F4',0);
+		$pdf->AddPage('P','F4',0);
 		$pdf->SetFont('Times','B',17);
 		/*
 			*Catatan
@@ -25,33 +25,45 @@ class Print_rencana_harian extends CI_Controller {
 		
 		
 		//header
-		$pdf->Cell(50,25,$pdf->Image(base_url('assets/img/'.'logoAtari.jpeg'),10,10,80),0);
-		$pdf->Cell((310-80),25,"Rencana Harian Porduksi",0,0,'C');
+		$pdf->Cell(50,25,$pdf->Image(base_url('assets/img/'.'logoAtari.jpeg'),10,10,60),0);
 		$pdf->Ln();
 
+		$pdf->Cell(190,7,"Outstanding",0,0,'C');
+		$pdf->Ln();
 		//date info
-
-		$pdf->SetFont('Times','',10);
-		$pdf->Cell(310,10,"Tanggal : ".date('d/m/Y'),0,0,'L');
+		$pdf->SetFont('Times','',14);
+		$pdf->Cell(190,7,date('d/m/Y'),0,0,'C');
 		$pdf->Ln();
+		$pdf->Ln();
+
+		/*
+			Running	
+			Customer	
+			Nama Barang	
+			Bahan	
+			Warna	
+			QTY	
+			CT	
+			CAV	
+			GW	
+			NW	
+			Kurang Prod.
+
+		*/
 		//table 
 		//thead
 		$pdf->SetFont('Times','B',10);
-		$pdf->Cell(20,8,"Mesin/Ton",1,0,'C');
-		$pdf->Cell(45,8,"Nama Barang",1,0,'C');
-		$pdf->Cell(17,8,"Warna",1,0,'C');
-		$pdf->Cell(27,8,"Bahan",1,0,'C');
-		$pdf->Cell(21,8,"Po Qty",1,0,'C');
+		$pdf->Cell(20,8,"Runing",1,0,'C');
+		$pdf->Cell(21,8,"Cutomer",1,0,'C');
+		$pdf->Cell(38,8,"Nama Barang",1,0,'C');
+		$pdf->Cell(20,8,"Bahan",1,0,'C');
+		$pdf->Cell(21,8,"Warna",1,0,'C');
+		$pdf->Cell(15,8,"Qty",1,0,'C');
 		$pdf->Cell(10,8,"CT",1,0,'C');
 		$pdf->Cell(10,8,"CAV",1,0,'C');
-		$pdf->Cell(14,8,"Brutto",1,0,'C');
-		$pdf->Cell(14,8,"Netto",1,0,'C');
-		$pdf->Cell(30,8,"Target/Shift",1,0,'C');
-		$pdf->Cell(21,8,"Target/Hari",1,0,'C');
-		$pdf->Cell(21,8,"Lama Prod.",1,0,'C');
-		$pdf->Cell(19,8,"Keb. Bahan",1,0,'C');
-		$pdf->Cell(21,8,"Est. Selsai",1,0,'C');
-		$pdf->Cell(21,8,"Keterangan",1,0,'C');
+		$pdf->Cell(10,8,"Bruto",1,0,'C');
+		$pdf->Cell(10,8,"Netto",1,0,'C');
+		$pdf->Cell(15,8,"Kurang",1,0,'C');
 		$pdf->Ln();
 
 		//Tbody
@@ -74,22 +86,17 @@ class Print_rencana_harian extends CI_Controller {
 			$est_selsai 	= date("d M Y",strtotime("+$lama_prod hour"));
 
 
-			$pdf->Cell(10,8,$prd->no_mesin,1,0,'C');
-			$pdf->Cell(10,8,$prd->tonase,1,0,'C');
-			$pdf->Cell(45,8,$prd->nama_barang,1,0,'L');
-			$pdf->Cell(17,8,$prd->warna,1,0,'C');
-			$pdf->Cell(27,8,$prd->bahan,1,0,'C');
-			$pdf->Cell(21,8,$prd->qty,1,0,'C');
-			$pdf->Cell(10,8,$prd->ct,1,0,'C');
-			$pdf->Cell(10,8,$prd->cav,1,0,'C');
-			$pdf->Cell(14,8,$prd->bruto,1,0,'C');
-			$pdf->Cell(14,8,$prd->netto,1,0,'C');
-			$pdf->Cell(30,8,$target_shift,1,0,'C');
-			$pdf->Cell(21,8,$target_hari,1,0,'C');
-			$pdf->Cell(21,8,$lama_prod<=0?'-':$lama_prod." Jam",1,0,'C');
-			$pdf->Cell(19,8,$prd->keb_total_m,1,0,'C');
-			$pdf->Cell(21,8,$est_selsai,1,0,'C');
-			$pdf->Cell(21,8,'',1,0,'C');
+			$pdf->Cell(20,6,$prd->status,1,0,'C');
+			$pdf->Cell(21,6,$prd->nama_customer,1,0,'C');
+			$pdf->Cell(38,6,$prd->nama_barang,1,0,'L');
+			$pdf->Cell(20,6,$prd->bahan,1,0,'C');
+			$pdf->Cell(21,6,$prd->warna,1,0,'C');
+			$pdf->Cell(15,6,$prd->qty,1,0,'C');
+			$pdf->Cell(10,6,$prd->ct,1,0,'C');
+			$pdf->Cell(10,6,$prd->cav,1,0,'C');
+			$pdf->Cell(10,6,$prd->bruto,1,0,'C');
+			$pdf->Cell(10,6,$prd->netto,1,0,'C');
+			$pdf->Cell(15,6,$prd->blnc_prod<0?'('.abs($prd->blnc_prod).')':$prd->blnc_prod,1,0,'C');
 			$pdf->Ln();		
 		}
 

@@ -112,7 +112,7 @@
 								?></td>
 								<td><?=$key->tanggal_po?></td>
 								<td><?=$key->no_po?></td>
-								<td><?=$key->nama_customer?></td>
+								<td><?=$key->nama_customer_m?></td>
 								<td><?=$key->no_po_customer?></td>
 								<td><?=$key->part_no?></td>
 								<td nowrap><?=$key->nama_barang?></td>
